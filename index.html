@@ -3,54 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вращающийся куб</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        .cube {
-            width: 100px;
-            height: 100px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: spin 5s infinite linear;
-        }
-
-        .face {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            border: 2px solid #333;
-            box-sizing: border-box;
-        }
-
-        .front  { transform: translateZ(50px); }
-        .back   { transform: rotateY(180deg) translateZ(50px); }
-        .right  { transform: rotateY(90deg) translateZ(50px); }
-        .left   { transform: rotateY(-90deg) translateZ(50px); }
-        .top    { transform: rotateX(90deg) translateZ(50px); }
-        .bottom { transform: rotateX(-90deg) translateZ(50px); }
-
-        @keyframes spin {
-            from { transform: rotateX(0) rotateY(0); }
-            to { transform: rotateX(360deg) rotateY(360deg); }
-        }
-    </style>
+    <title>Интерактивный 3D куб</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="cube">
-        <div class="face front"></div>
-        <div class="face back"></div>
-        <div class="face right"></div>
-        <div class="face left"></div>
-        <div class="face top"></div>
-        <div class="face bottom"></div>
+    <div class="content">
+        <div id="cube-container"></div>
+        <h1>Making big ideas come true</h1>
+        <p>This project is currently conceived as a undemanding 3D first-person shooter in the browser, the approximate release date will be in 2025-2026. You can help the project by writing to me by e-mail: sitetester32@gmail.com</p>
+        <p>I already imagine how many models I need to make and how much money I need to spend on buying servers, haha ​​:))</p>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
