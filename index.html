@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Анимированный фон с созвездиями</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -13,9 +14,11 @@
             overflow: hidden;
             background-color: black;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             text-align: center;
+            font-family: 'Poppins', sans-serif;
+            color: white;
         }
 
         canvas {
@@ -24,16 +27,17 @@
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 1;
         }
 
         h1 {
             position: relative;
             z-index: 10;
             font-size: 3em;
-            color: white;
-            font-family: 'Gill Sans', 'Arial Black', sans-serif;
+            font-weight: 700;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             animation: glow 2s infinite alternate;
+            margin-top: 20vh;
         }
 
         @keyframes glow {
@@ -44,11 +48,45 @@
                 text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
             }
         }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            max-width: 800px;
+            margin-top: 40vh;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
     <h1>Making big ideas come true</h1>
+    <div class="content">
+        <p>Hello to everyone who is currently on this site. I am y9kudo, Russian Web Developer, developer of bots for telegram and discord. Beginner developer of games on websites.</p>
+        <p>I plan to create one very large project that will be located on this GitHub site, the project is called "Battle Online", this is a future 3D first-person shooter that will be suitable even for weak computers right from 2012.</p>
+        <p>The approximate year of release of this game will be in 2025 or 2026, because I will need to conduct thousands of tests and also buy servers and a special domain for my game, well, or maybe at the development stage you will be able to play using my server that I will make from my PC (I know, the load will be colossal).</p>
+        <p>In 2027, it is planned to make a mobile application for my game and upload it to the Google Play Market.</p>
+        <p>If you want to help me, you can contact me using the following buttons:</p>
+        <a href="https://t.me/IamYakov" class="button">Telegram</a>
+        <a href="https://vk.com/iamyakov" class="button">VK</a>
+        <a href="mailto:sitetester32@gmail.com" class="button">GMail</a>
+    </div>
     <script>
         function Constellation(canvas) {
             var _this = this,
@@ -59,8 +97,7 @@
                         width: 3
                     },
                     line: {
-                        color: 'rgba(222, 76, 138, .5)',
-                        width: 0.2 },
+                        color: 'rgba(255, 255, 255, .5)', // Белый цвет линий width: 0.2 },
                     position: {
                         x: 0,
                         y: 0 },
