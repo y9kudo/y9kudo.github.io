@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battle Online</title>
+    <title>Анимированный фон с созвездиями</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
     <style>
         body, html {
@@ -35,6 +35,24 @@
             text-align: center;
         }
 
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: white;
+            color: black;
+        }
+
         h1 {
             font-size: 3em;
             font-weight: 700;
@@ -56,29 +74,14 @@
             margin-top: 50px;
             padding-bottom: 50px;
         }
-
-        .button {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            color: white;
-            text-decoration: none;
-            border: 2px solid white;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .button:hover {
-            background-color: white;
-            color: black;
-        }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
     <div class="container">
-        <h1>Batlle Online!</h1>
-        <div class="content">
+        <button class="button" id="languageSwitch">Russian</button>
+        <h1>Welcome to "Battle Online!</h1>
+        <div class="content" id="content">
             <p>Hello to everyone who is currently on this site. I am y9kudo, Russian Web Developer, developer of bots for telegram and discord. Beginner developer of games on websites.</p>
             <p>I plan to create one very large project that will be located on this GitHub site, the project is called "Battle Online", this is a future 3D first-person shooter that will be suitable even for weak computers right from 2012.</p>
             <p>The approximate year of release of this game will be in 2025 or 2026, because I will need to conduct thousands of tests and also buy servers and a special domain for my game, well, or maybe at the development stage you will be able to play using my server that I will make from my PC (I know, the load will be colossal).</p>
@@ -228,6 +231,40 @@
         document.addEventListener("DOMContentLoaded", function () {
             var c = new Constellation(document.getElementById('canvas'));
             c.init();
+
+            const languageSwitch = document.getElementById('languageSwitch');
+            const content = document.getElementById('content');
+
+            const texts = {
+                en: `
+                    <p>Hello to everyone who is currently on this site. I am y9kudo, Russian Web Developer, developer of bots for telegram and discord. Beginner developer of games on websites.</p>
+                    <p>I plan to create one very large project that will be located on this GitHub site, the project is called "Battle Online", this is a future 3D first-person shooter that will be suitable even for weak computers right from 2012.</p>
+                    <p>The approximate year of release of this game will be in 2025 or 2026, because I will need to conduct thousands of tests and also buy servers and a special domain for my game, well, or maybe at the development stage you will be able to play using my server that I will make from my PC (I know, the load will be colossal).</p>
+                    <p>In 2027, it is planned to make a mobile application for my game and upload it to the Google Play Market.</p>
+                    <p>If you want to help me, you can contact me using the following buttons:</p>
+                    <a href="https://t.me/IamYakov" class="button">Telegram</a>
+                    <a href="https://vk.com/iamyakov" class="button">VK</a>
+                    <a href="mailto:sitetester32@gmail.com" class="button">GMail</a>
+                `,
+                ru: `
+                    <p>Привет всем кто сейчас находится на этом сайте. Я y9kudo, Русский Веб-Разработчик, разработчик ботов для телеграма и дискорда. Начинающий разработчик игр на вебсайтах.</p>
+                    <p>Я планирую создать один очень большой проект, который будет находиться на этом сайте GitHub, проект называется "Battle Online", это будущий 3Д шутер от первого лица который подойдёт даже для слабых компьютеров прямо с 2012 года.</p>
+                    <p>Примерный год выхода этой игры будет в 2025 или 2026, т.к мне нужно будет провести тысячи тестирований, а также купить сервера и специальный домен для моей игры, ну или может на стадии разработки вы сможете поиграть, используя мой сервер, который я сделаю из своего ПК (знаю, нагрузка будет колоссальной).</p>
+                    <p>В 2027 планируется сделать мобильное приложение по моей игре и залить его в гугл плей маркет.</p>
+                    <p>Если вы хотите помочь мне, можете со мной связаться по следующим кнопкам:</p>
+                    <a href="https://t.me/IamYakov" class="button">Telegram</a>
+                    <a href="https://vk.com/iamyakov" class="button">VK</a>
+                    <a href="mailto:sitetester32@gmail.com" class="button">GMail</a>
+                `
+            };
+
+            let currentLanguage = 'en';
+
+            languageSwitch.addEventListener('click', function () {
+                currentLanguage = currentLanguage === 'en' ? 'ru' : 'en';
+                content.innerHTML = texts[currentLanguage];
+                languageSwitch.textContent = currentLanguage === 'en' ? 'Russian' : 'English';
+            });
         });
     </script>
 </body>
