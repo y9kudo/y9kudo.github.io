@@ -1,29 +1,37 @@
-// Создаем сцену
+// Инициализация сцены, камеры и рендера
 const scene = new THREE.Scene();
-
-// Создаем камеру
-const camera = new THREE.PerspectiveCamera(75, 400 / 400, 0.1, 1000);
-camera.position.z = 5;
-
-// Создаем рендерер
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(400, 400);
-document.getElementById('cube-container').appendChild(renderer.domElement);
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.getElementById('container').appendChild(renderer.domElement);
 
-// Создаем геометрию куба
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+// Создание геометрической фигуры (тетраэдр)
+const geometry = new THREE.TetrahedronGeometry(1, 0);
+const edges = new THREE.EdgesGeometry(geometry);
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+const line = new THREE.LineSegments(edges, lineMaterial);
+scene.add(line);
 
-// Добавляем управление мышью
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+// Установка позиции камеры
+camera.position.z = 5;
 
 // Анимация
 function animate() {
     requestAnimationFrame(animate);
-    controls.update();
+
+    // Вращение фигуры line.rotation.x += 0.01;
+    line.rotation.y += 0.01;
+
     renderer.render(scene, camera);
 }
 
 animate();
+
+// Обработка изменения размера окна
+window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+});
